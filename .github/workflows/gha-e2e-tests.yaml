@@ -14,7 +14,7 @@ permissions:
 
 env:
   TARGET_ORG: amediomediagroup
-  TARGET_REPO: test
+  TARGET_REPO: arc_e2e_test_dummy
   IMAGE_NAME: "arc-test-image"
   IMAGE_VERSION: "latest"
 
