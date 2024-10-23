@@ -13,8 +13,8 @@ permissions:
   contents: read
 
 env:
-  TARGET_ORG: actions-runner-controller
-  TARGET_REPO: arc_e2e_test_dummy
+  TARGET_ORG: amediomediagroup
+  TARGET_REPO: test
   IMAGE_NAME: "arc-test-image"
   IMAGE_VERSION: "0.9.3"
 
