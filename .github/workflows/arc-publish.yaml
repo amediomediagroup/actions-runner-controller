@@ -22,7 +22,7 @@ permissions:
   packages: write
 
 env:
-  TARGET_ORG: actions-runner-controller
+  TARGET_ORG: amediomediagroup
   TARGET_REPO: actions-runner-controller
 
 concurrency:
