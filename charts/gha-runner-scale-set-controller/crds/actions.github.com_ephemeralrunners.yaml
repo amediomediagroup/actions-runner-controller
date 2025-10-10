@@ -36,6 +36,9 @@ spec:
         - jsonPath: .status.jobDisplayName
           name: JobDisplayName
           type: string
+        - jsonPath: .status.jobId
+          name: JobId
+          type: string
         - jsonPath: .status.message
           name: Message
           type: string
@@ -7784,6 +7787,53 @@ spec:
                   required:
                     - containers
                   type: object
+                vaultConfig:
+                  properties:
+                    azureKeyVault:
+                      properties:
+                        certificatePath:
+                          type: string
+                        clientId:
+                          type: string
+                        tenantId:
+                          type: string
+                        url:
+                          type: string
+                      required:
+                        - certificatePath
+                        - clientId
+                        - tenantId
+                        - url
+                      type: object
+                    proxy:
+                      properties:
+                        http:
+                          properties:
+                            credentialSecretRef:
+                              type: string
+                            url:
+                              description: Required
+                              type: string
+                          type: object
+                        https:
+                          properties:
+                            credentialSecretRef:
+                              type: string
+                            url:
+                              description: Required
+                              type: string
+                          type: object
+                        noProxy:
+                          items:
+                            type: string
+                          type: array
+                      type: object
+                    type:
+                      description: |-
+                        VaultType represents the type of vault that can be used in the application.
+                        It is used to identify which vault integration should be used to resolve secrets.
+                      type: string
+                  type: object
               required:
                 - githubConfigSecret
                 - githubConfigUrl
@@ -7798,6 +7848,8 @@ spec:
                     type: string
                   type: object
                 jobDisplayName:
+                  type: string
+                jobId:
                   type: string
                 jobRepositoryName:
                   type: string
@@ -7827,8 +7879,6 @@ spec:
                   type: string
                 runnerId:
                   type: integer
-                runnerJITConfig:
-                  type: string
                 runnerName:
                   type: string
                 workflowRunId:
@@ -7840,4 +7890,3 @@ spec:
       storage: true
       subresources:
         status: {}
-  preserveUnknownFields: false

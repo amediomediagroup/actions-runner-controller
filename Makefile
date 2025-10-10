@@ -6,7 +6,7 @@ endif
 DOCKER_USER ?= $(shell echo ${DOCKER_IMAGE_NAME} | cut -d / -f1)
 VERSION ?= dev
 COMMIT_SHA = $(shell git rev-parse HEAD)
-RUNNER_VERSION ?= 2.324.0
+RUNNER_VERSION ?= 2.328.0
 TARGETPLATFORM ?= $(shell arch)
 RUNNER_NAME ?= ${DOCKER_USER}/actions-runner
 RUNNER_TAG  ?= ${VERSION}
@@ -117,9 +117,6 @@ manifests: manifests-gen-crds chart-crds
 
 manifests-gen-crds: controller-gen yq
 	$(CONTROLLER_GEN) $(CRD_OPTIONS) rbac:roleName=manager-role webhook paths="./..." output:crd:artifacts:config=config/crd/bases
-	for YAMLFILE in config/crd/bases/actions*.yaml; do \
-		$(YQ) '.spec.preserveUnknownFields = false' --inplace "$$YAMLFILE" ; \
-	done
 	make manifests-gen-crds-fix DELETE_KEY=x-kubernetes-list-type
 	make manifests-gen-crds-fix DELETE_KEY=x-kubernetes-list-map-keys
 
